@@ -3,7 +3,7 @@ import time
 from queue import Queue, Full, Empty
 import smbus2
 
-from utils import adc_resolution_to_hex, adc_resolution_to_vfs, magnetometer_resolution_to_range
+from .utils import adc_resolution_to_hex, adc_resolution_to_vfs, magnetometer_resolution_to_range
 
 import queue
 
@@ -223,7 +223,7 @@ class MagnetometerReader:
             v_shunt = self.adc.read() 
             self.data_count += 1
             self.data.append((t, mx, my, mz, v_shunt))
-            if self.data_count > self.max_data_points:
+            if self.data_count >= self.max_data_points :
                 break
     def stop(self):
         self.running = False
